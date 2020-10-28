@@ -1,4 +1,5 @@
 const path = require('path');
+const HTMLWebpackPlugins = require('html-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -17,8 +18,23 @@ module.exports = {
         rules: [
             {
                 test: /\.[tj]sx?$/,
-                use: [ts-loader],
+                use: ['ts-loader'],
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
             }
         ]
-    }
+    },
+    plugins: [
+        new HTMLWebpackPlugins({
+            template: path.resolve(__dirname, 'public/index.html')
+        })
+    ],
+    devServer: {
+        port: 3000,
+        open: true,
+        hot: true,
+    },
+    devtool: 'source-map'
 };
