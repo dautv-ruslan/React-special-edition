@@ -24,7 +24,7 @@ console.log(MyHometask);
 interface MyArray<T> {
     [N: number]: T;
 
-    reduce<U>(fn: (sum: U, el: T) => U): U;
+    reduce<U>(fn: (sum: U, el: T) => U, init: U): U;
 }
 
 const tsArr: Array<number> = [1,2,3,4];
